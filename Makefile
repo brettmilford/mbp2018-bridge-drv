@@ -4,9 +4,10 @@ bce-objs := pci.o mailbox.o queue.o queue_dma.o vhci/vhci.o vhci/queue.o vhci/tr
 #MY_CFLAGS += -g -DDEBUG
 #ccflags-y += ${MY_CFLAGS}
 #CC += ${MY_CFLAGS}
+KERNEL ?= $(shell uname -r)
 
 all:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+	make -C /lib/modules/$(KERNEL)/build M=$(PWD) modules
 
 clean:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+	make -C /lib/modules/$(KERNEL)/build M=$(PWD) clean
